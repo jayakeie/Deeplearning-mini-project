@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>분석 결과</title>
+</head>
+<body>
+    <h1>감정 분석 결과</h1>
+    
+    {% if error %}
+        <p style="color:red;">오류: {{ error }}</p>
+    {% else %}
+        <img src="{{ image }}" width="640">
+        <br><br>
+        
+        <p><strong>주요 감정:</strong> {{ emotion }}</p>
+        <p><strong>나이:</strong> {{ age }}</p>
+        <p><strong>성별:</strong> {{ gender }}</p>
+        
+        <h3>세부 감정 점수</h3>
+        <ul>
+        {% for emotion, score in scores.items() %}
+            <li>{{ emotion }}: {{ "%.1f"|format(score) }}%</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <br>
+    <a href="/">다시 분석하기</a>
+</body>
+</html>
